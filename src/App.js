@@ -1,7 +1,7 @@
-import { render } from "react-dom";
+import { createRoot  } from "react-dom";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import SearchParams from "./SearchParams"
-import Details from "./Details";
+import WrappedDetails from "./Details";
 import { StrictMode } from "react";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
           <Link to='/'>Adopt Me!</Link>
         </header>
         <Routes>
-          <Route path="/details/:id" element={<Details />}/>
+          <Route path="/details/:id" element={<WrappedDetails />}/>
           <Route path="/" element={<SearchParams />}/>
         </Routes>
       </BrowserRouter>
@@ -20,4 +20,7 @@ const App = () => {
   );
 };
 
-render(<App />, document.getElementById("root"));
+const container = document.getElementById("root");
+const root = createRoot(container);
+
+root.render(<App />);
